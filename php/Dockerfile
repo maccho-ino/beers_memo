@@ -1,5 +1,6 @@
 FROM php:8.0-apache
-
+RUN cd /etc/apache2/mods-enabled \
+    && ln -s ../mods-available/rewrite.load
 RUN apt update \
         && apt install -y \
             g++ \
@@ -14,6 +15,8 @@ RUN apt update \
             pdo \
             pdo_pgsql \
             pgsql
+
+RUN apt-get install -y nodejs npm && npm install n -g && n 14.15.3
 
 WORKDIR /var/www/beers_memo
 
