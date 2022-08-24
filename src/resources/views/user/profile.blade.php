@@ -26,7 +26,7 @@
                 <img class="rounded-circle img-fluid w-50 d-block mx-auto border border-dark" src="/storage/profile_images/{{ Auth::id() }}.jpg">
             </figure>
             @else
-            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="{{ asset('/image/noimage.png')}}">
+            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="{{ asset('/image/noimage.png') }}">
             @endif
             <a href="image"><button type="button" class="btn btn-outline-primary mt-2"><i class="fa fa-camera"></i> 画像を変更</button></a>
             @if ($errors->any())

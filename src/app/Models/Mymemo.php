@@ -12,4 +12,9 @@ class Mymemo extends Model
         'name' => 'required',
         'country' => 'required',
     );
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

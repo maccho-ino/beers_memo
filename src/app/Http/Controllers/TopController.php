@@ -8,6 +8,8 @@ class TopController extends Controller
 {
     public function show()
     {
+        $posts = Mymemo::orderBy('created_at', 'desc')->get();
+
         return view('front.top');
     }
 

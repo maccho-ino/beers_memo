@@ -17,7 +17,11 @@ class MainController extends Controller
 
     public function show()
     {
-        return view('user.mypage');
+        $posts = Auth::user()->mymemos()->orderBy('created_at', 'desc')->get();
+
+        return view('user.mypage')->with(['posts' => $posts]);
+
+        // return view('user.mypage');
     }
 
     public function add()
@@ -30,6 +34,7 @@ class MainController extends Controller
         $this->validate($request, Mymemo::$rules);
 
         $mymemo = new Mymemo;
+        $mymemo->user_id = Auth::id();
         $form = $request->all();
 
         // フォームから画像が送信されてきたら、保存して、$mymemo->image_path に画像のパスを保存する
@@ -51,7 +56,10 @@ class MainController extends Controller
 
     public function index(Request $request)
     {
-        return view('user.index');
+        $posts = Auth::user()->mymemos()->orderBy('created_at', 'desc')->get();
+
+
+        return view('user.index')->with(['posts' => $posts]);
     }
 
     public function profile()

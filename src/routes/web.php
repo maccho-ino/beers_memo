@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
-    Route::get('mypage', 'User\MainController@show');
+    Route::get('mypage', 'User\MainController@show')->name('user.mypage');
     Route::get('create', 'User\MainController@add');
     Route::post('create', 'User\MainController@create');
     Route::get('index', 'User\MainController@index');

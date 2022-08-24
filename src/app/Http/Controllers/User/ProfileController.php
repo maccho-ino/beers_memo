@@ -44,8 +44,8 @@ class ProfileController extends Controller
         $user->my_pic = basename($path);
 
         $user->save();
-
-        return redirect('/user/mypage');
+        // dd('hello');
+        return redirect('user/mypage');
     }
 
     public function create(Request $request)
