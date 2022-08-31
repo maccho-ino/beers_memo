@@ -31,7 +31,7 @@
                     @endif
                     <h5 class="card-title text-light">{{ $post->name }}</h5>
                     <p class="card-text text-light">{{ $post->country }}</p>
-                    <a href="#" class="btn btn-primary">more <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{ action('User\MainController@detail', $post->id) }}" class="btn btn-primary">more <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             @endforeach

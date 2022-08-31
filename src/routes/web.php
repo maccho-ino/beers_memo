@@ -14,6 +14,8 @@
 Route::get('/', 'TopController@show');
 Route::get('style', 'TopController@style');
 Route::get('country', 'TopController@country');
+Route::get('detail', 'TopController@detail');
+Route::get('detail/{id}', 'TopController@detail');
 
 Auth::routes();
 
@@ -25,9 +27,14 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::post('create', 'User\MainController@create');
     Route::get('index', 'User\MainController@index');
     Route::get('profile', 'User\ProfileController@index');
+    Route::post('profile', 'User\ProfileController@create');
     Route::post('image', 'User\ProfileController@store');
     Route::get('image', 'User\ProfileController@add');
-    Route::post('profile', 'User\ProfileController@create');
+    Route::get('detail', 'User\MainController@detail');
+    Route::get('detail/{id}', 'User\MainController@detail');
+    Route::get('edit/{id}', 'User\MainController@edit');
+    Route::post('edit', 'User\MainController@update');
+    Route::get('user/delete.{id}', 'User\MainController@delete');
 });
 
 Route::prefix('admin')->group(function () {

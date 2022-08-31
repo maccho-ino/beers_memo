@@ -21,7 +21,15 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-4 text-center">
-            <img class="rounded-circle img-fluid w-50 d-block mx-auto border border-dark" src="{{ asset('/storage/profile_images/'. Auth::id() .'.jpg') }}" alt="user icon">
+
+            @if ($posts)
+            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="/storage/profile_images/{{ Auth::id() }}.jpg" width="150" height="150">
+            @else
+            <img class="rounded-circle img-fluid w-50 d-block mx-auto border border-dark" src="{{ asset('/image/user.png') }}">
+            @endif
+
+            <i class="fa fa-user-circle fa-5x text-primary me-3"></i>
+
             <h4 class="text-dark text-center mt-2">{{ Auth::user()->name }}</h4>
         </div>
         <div class="col-lg-7">
@@ -57,7 +65,7 @@
                     @endif
                     <h5 class="card-title text-light mt-2">{{ $post->name }}</h5>
                     <p class="card-text text-light">{{ $post->country }}</p>
-                    <a href="#!" class="btn btn-primary">more <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{ action('User\MainController@detail', $post->id) }}" class="btn btn-primary">more <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             @endforeach

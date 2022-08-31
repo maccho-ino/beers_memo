@@ -45,7 +45,7 @@ class ProfileController extends Controller
 
         $user->save();
         // dd('hello');
-        return redirect('user/mypage');
+        return redirect()->action('User\MainController@show', ['user' => $user]);
     }
 
     public function create(Request $request)

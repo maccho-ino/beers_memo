@@ -20,15 +20,15 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-3 text-center">
+        <div class="col-lg-3 text-center d-flex flex-column">
             @if ($is_image)
             <figure>
-                <img class="rounded-circle img-fluid w-50 d-block mx-auto border border-dark" src="/storage/profile_images/{{ Auth::id() }}.jpg">
+                <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="/storage/profile_images/{{ Auth::id() }}.jpg" width="150" height="150">
             </figure>
             @else
-            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="{{ asset('/image/noimage.png') }}">
+            <i class="fa fa-user-circle fa-5x text-primary me-3"></i>
             @endif
-            <a href="image"><button type="button" class="btn btn-outline-primary mt-2"><i class="fa fa-camera"></i> 画像を変更</button></a>
+            <a href="image"><button type="button" class="btn btn-outline-primary mt-4"><i class="fa fa-camera"></i> 画像を変更</button></a>
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

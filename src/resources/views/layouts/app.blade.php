@@ -35,6 +35,7 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/74fe5fbec7.js" crossorigin="anonymous"></script>
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -63,11 +64,13 @@
                     </div>
                 </div>
                 <div class="col-lg-4 text-center bg-primary border-inner py-3">
-                    <div class="d-inline-flex align-items-center justify-content-center">
-                        <a href="index.html" class="navbar-brand">
-                            <img src="{{ asset('image/129650.png')}}" width="70" height="70">
-                            <h1 class="m-0 text-uppercase text-white">Beer's memo</h1>
-                        </a>
+                    <div class="box border border-light">
+                        <div class="d-inline-flex align-items-center justify-content-center">
+                            <a href="index.html" class="navbar-brand">
+                                <img src="{{ asset('image/129650.png')}}" width="70" height="70">
+                                <h1 class="m-0 text-uppercase text-white">Beer's memo</h1>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 text-center bg-secondary py-3">
@@ -138,7 +141,7 @@
         <div class="container">
             <div class="row gx-5">
                 <div class="col-lg-4 col-md-6 mt-lg-n5">
-                    <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary border-inner p-4">
+                    <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
                         <a href="index.html" class="navbar-brand">
                             <img src="{{ asset('image/129650.png')}}" width="120" height="120">
                             <h1 class="m-0 text-uppercase text-white">Beer's memo</h1>

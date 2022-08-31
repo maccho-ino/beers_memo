@@ -11,4 +11,9 @@ class Profile extends Model
     public static $rules = array(
         'intruduction' => 'max:100'
     );
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
