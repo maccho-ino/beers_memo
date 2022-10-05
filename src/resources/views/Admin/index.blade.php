@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', '管理者ページ')
 
 @section('content')
 
 <!-- Page Header Start -->
-<div class="container-fluid bg-dark bg-img p-5 mb-5">
+<div class="container-fluid bg-dark p-5 mb-5">
     <div class="row">
         <div class="col-12 text-center">
             <h1 class="display-4 text-uppercase text-white">管理者ページ</h1>
@@ -15,5 +15,16 @@
     </div>
 </div>
 <!-- Page Header End -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <a href="{{ action('Admin\MainController@userIndex') }}"><button type="button" class="center-block btn btn-outline-primary"><i class="fa fa-user-circle-o fa-lg"></i> user 一覧</button></a>
+        </div>
+        <!-- <div class="col-sm-2"> -->
+        <!-- <a href="{{ action('Admin\MainController@mymemoIndex') }}"><button type="button" class="btn btn-outline-primary"><i class="fa fa-file-text-o fa-lg"></i> mymemo 一覧</button></a> -->
+        <!-- </div> -->
+    </div>
+</div>
 
 @endsection

@@ -8,6 +8,7 @@ use App\Http\Requests\ProfileRequest;
 use Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Profile;
+use InterventionImage;
 
 class ProfileController extends Controller
 {
@@ -38,10 +39,22 @@ class ProfileController extends Controller
     #プロフィール画像の保存
     public function store(ProfileRequest $request)
     {
-        // dd($request);
         $user = Auth::user();
-        $path = $request->myPic->storeAs('public/profile_images', Auth::id() . '.jpg');
-        $user->my_pic = basename($path);
+        // dd($request->myPic);
+        $image = InterventionImage::make($request->myPic);
+        $image->fit(300, 300);
+        // dd($image);
+
+        $filePath = storage_path('app/public/profile_images');
+
+        if (Storage::disk('local')->exists('public/profile_images/' . Auth::id() . '.jpg')) {
+            Storage::disk('local')->delete('public/profile_images/' . Auth::id() . '.jpg');
+        }
+
+        $image->save($filePath . '/' . Auth::id() . '.jpg');
+
+        // $path = $request->myPic->storeAs('public/profile_images', Auth::id() . '.jpg');
+        // $user->my_pic = basename($path);
 
         $user->save();
         // dd('hello');

@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Page Header Start -->
-<div class="container-fluid bg-dark bg-img p-5 mb-5">
+<div class="container-fluid bg-dark p-5 mb-5">
     <div class="row">
         <div class="col-12 text-center">
             <h1 class="display-4 text-uppercase text-white">My memo 作成</h1>
@@ -60,23 +60,41 @@
                     <div class="col-sm-12">
                         <input type="text" class="form-control bg-light border-primary px-4" placeholder="名前" name="name" value="{{ old('name') }}" style="height: 55px;">
                     </div>
-                    <div class="col-sm-6">
+
+                    <div class="col-sm-12">
+                        <select class="form-control bg-light border-primary px-4" id="country_id" name="country_id" value="{{ old('country_id') }}" placeholder="原産国" style="height: 55px;" type="text">
+                            @foreach($countries as $id => $name)
+                            <option value="{{ $id }}">{{ $name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- <div class=" col-sm-6">
                         <input type="text" class="form-control bg-light border-primary px-4" placeholder="原産国" name="country" value="{{ old('country') }}" style="height: 55px;">
+                    </div> -->
+
+                    <div class="col-sm-12">
+                        <select class="form-control bg-light border-primary px-4" id="style_id" name="style_id" placeholder="スタイル" style="height: 55px;" type="text">
+                            @foreach($styles as $id => $name)
+                            <option value="{{ $id }}">{{ $name }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="col-sm-6">
+
+                    <!-- <div class="col-sm-6">
                         <input type="text" class="form-control bg-light border-primary px-4" placeholder="スタイル" name="style" value="{{ old('style') }}" style="height: 55px;">
-                    </div>
+                    </div> -->
                     <div class="col-sm-6 input-group">
                         <input type="text" class="form-control bg-light border-primary px-4" placeholder="アルコール度数" name="degree" value="{{ old('degree') }}" style="height: 55px;">
                         <div class="input-group-append">
                             <span class="input-group-text border-primary bg-primary text-dark" id="text1b">%</span>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <input type="text" class="form-control bg-light border-primary px-4" placeholder="飲んだor買った場所" name="place" value="{{ old('place') }}" style="height: 55px;">
                     </div>
                     <div class="col-sm-12">
-                        <textarea class="form-control bg-light border-primary px-4 py-3" rows="4" placeholder="コメント" name="cments" value="{{ old('coments') }}"></textarea>
+                        <textarea class="form-control bg-light border-primary px-4 py-3" rows="4" placeholder="コメント" name="coment" value="{{ old('coments') }}"></textarea>
                     </div>
                     <div class="col-sm-6">
                         <input type="file" class="form-control-file" name="image">
@@ -86,6 +104,9 @@
                 </div>
         </div>
         </form>
+
+        <a href="mypage" class="text-center mt-3"><i class="fa fa-arrow-circle-left text-primary mt-5" aria-hidden="true"></i> MY PAGEに戻る</a>
+
     </div>
 </div>
 </div>

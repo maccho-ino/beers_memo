@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Page Header Start -->
-<div class="container-fluid bg-dark bg-img p-5 mb-5">
+<div class="container-fluid bg-dark p-5 mb-5">
     <div class="row">
         <div class="col-12 text-center">
             <h1 class="display-4 text-uppercase text-white">My memo 編集</h1>
@@ -60,36 +60,56 @@
                     <div class="col-sm-12">
                         <input type="text" class="form-control bg-light border-primary px-4" placeholder="名前" name="name" value="{{ $mymemo_form->name }}" style="height: 55px;">
                     </div>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control bg-light border-primary px-4" placeholder="原産国" name="country" value="{{ $mymemo_form->country }}" style="height: 55px;">
+                    <div class="col-sm-12">
+                        <!-- <input type="text" class="form-control bg-light border-primary px-4" placeholder="原産国" name="country" value="{{ $mymemo_form->country->name }}" style="height: 55px;"> -->
+                        <select class="form-control bg-light border-primary px-4" id="country_id" name="country_id" value="{{ $mymemo_form->country->name }}" placeholder="原産国" style="height: 55px;" type="text">
+                            @foreach($countries as $id => $name)
+                            <option value="{{ $id }}" @if ($mymemo_form->country_id == $id) selected @endif>{{ $name }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control bg-light border-primary px-4" placeholder="スタイル" name="style" value="{{ $mymemo_form->style }}" style="height: 55px;">
+
+
+                    <div class="col-sm-12">
+                        <select class="form-control bg-light border-primary px-4" id="style_id" name="style_id" placeholder="スタイル" style="height: 55px;" type="text">
+                            @foreach($styles as $id => $name)
+                            <option value="{{ $id }}" @if ($mymemo_form->style_id == $id) selected @endif>
+                                @if($mymemo_form->style_id != null)
+                                {{ $name }}
+                                @endif
+                            </option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="col-sm-6 input-group">
+
+                    <div class="col-sm-12 input-group">
                         <input type="text" class="form-control bg-light border-primary px-4" placeholder="アルコール度数" name="degree" value="{{ $mymemo_form->degree }}" style="height: 55px;">
                         <div class="input-group-append">
                             <span class="input-group-text border-primary bg-primary text-dark" id="text1b">%</span>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <input type="text" class="form-control bg-light border-primary px-4" placeholder="飲んだor買った場所" name="place" value="{{ $mymemo_form->place }}" style="height: 55px;">
                     </div>
                     <div class="col-sm-12">
-                        <textarea class="form-control bg-light border-primary px-4 py-3" rows="4" placeholder="コメント" name="cments" value="{{ $mymemo_form->coment }}"></textarea>
+                        <textarea class="form-control bg-light border-primary px-4 py-3" rows="4" placeholder="コメント" name="coment" value="{{ $mymemo_form->coment }}">{{ $mymemo_form->coment }}</textarea>
                     </div>
                     <div class="col-sm-6">
-                        <input type="file" class="form-control-file" name="image">
+                        <input type="file" class="form-control-file" name="image" value="{{ $mymemo_form->image_path }}">
                     </div>
                     @csrf
                     <input type="submit" class="btn btn-primary border-inner w-100 py-3" value="更新">
-                    <a href="{{ action('User\MainController@delete', $mymemo_form->id) }}"><button type="button" class="center-block btn btn-outline-primary mt-3"><i class="fa fa-trash"></i> MY MEMO 削除</button></a>
+                    <!-- <a href="{{ action('User\MainController@delete', $mymemo_form->id) }}"><button type="button" class="center-block btn btn-outline-primary mt-3"><i class="fa fa-trash"></i> MY MEMO 削除</button></a> -->
                 </div>
         </div>
         </form>
     </div>
 </div>
 </div>
+</div>
+
+<div class="text-center">
+    <a href="{{ action('User\MainController@index') }}"><i class="fa fa-arrow-circle-left text-primary mt-5" aria-hidden="true"></i> MY MEMO 一覧に戻る</a>
 </div>
 <!-- NewPost End -->
 @endsection

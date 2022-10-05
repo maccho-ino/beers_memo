@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Page Header Start -->
-<div class="container-fluid bg-dark bg-img p-5 mb-5">
+<div class="container-fluid bg-dark p-5 mb-5">
     <div class="row">
         <div class="col-12 text-center">
             <h1 class="display-4 text-uppercase text-white">MEMO</h1>
@@ -35,21 +35,29 @@
             @if($posts->image_path)
             <img class="rounded border border-dark img-fluid" src="{{ asset('storage/mymemo_images/' . $posts->image_path) }}" alt="image">
             @else
-            <img class="rounded border border-dark img-fluid" src="{{ asset('/image/noimage.png') }}" alt="image">
+            <img class="rounded border border-dark img-fluid" src="{{ asset('/image/noimage_beer.jpg') }}" alt="image">
             @endif
 
         </div>
         <div class="col-lg-7 mt-3 pl-3">
-            <h2 class="ml-2">{{ $posts->name }}</h2>
+            <h2 class="ml-2 overflow-hidden text-break">{{ $posts->name }}</h2>
             <table class="table">
                 <tbody>
                     <tr>
                         <th scope="row" style="width: 30%"><i class="fa fa-flag"></i> 原産国</th>
-                        <td>{{ $posts->country }}</td>
+                        <td>
+                            @if($posts->country != null)
+                            {{ $posts->country->name }}
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row" style="width: 30%"><i class="fa fa-beer"></i> スタイル</th>
-                        <td>{{ $posts->style }}</td>
+                        <td>
+                            @if($posts->style != null)
+                            {{ $posts->style->name }}
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row" style="width: 30%"><i class="fa fa-tint"></i> アルコール度数</th>
@@ -61,7 +69,7 @@
                     </tr>
                     <tr>
                         <th scope="row" style="width: 30%"><i class="fa fa-commenting"></i> コメント</th>
-                        <td>{{ $posts->coment }}</td>
+                        <td class="comment">{{ $posts->coment }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -69,8 +77,13 @@
     </div>
 </div>
 
-<div class="text-center">
-    <a href="{{ action('TopController@show') }}"><i class="fa fa-arrow-circle-left text-primary mt-5" aria-hidden="true"></i> MEMO 一覧に戻る</a>
+<div class="container d-flex justify-content-center mt-5">
+    <div class="d-inline-flex flex-row align-items-center">
+        <a href="{{ action('TopController@show') }}" class="btn btn-outline-primary mr-5"><i class="fa fa-home" aria-hidden="true"></i> TOP</a>
+        <h4 class="text-primary"> | </h4>
+        <button type="button" onClick="history.back()" class="btn btn-outline-primary ml-5"><i class="fa fa-arrow-left" aria-hidden="true"></i> 戻る</button>
+    </div>
 </div>
+
 
 @endsection

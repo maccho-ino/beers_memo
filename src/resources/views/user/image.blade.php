@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Page Header Start -->
-<div class="container-fluid bg-dark bg-img p-5 mb-5">
+<div class="container-fluid bg-dark p-5 mb-5">
     <div class="row">
         <div class="col-12 text-center">
             <h1 class="display-4 text-uppercase text-white">My Profile</h1>
@@ -26,9 +26,9 @@
                 <img class="rounded-circle img-fluid w-50 d-block mx-auto border border-dark" src="/storage/profile_images/{{ Auth::id() }}.jpg">
             </figure>
             @else
-            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="{{ asset('/image/noimage.png')}}">
+            <img class="rounded-circle img-fluid w-50 d-block mx-auto border border-dark" src="{{ asset('/image/noimage.png')}}">
             @endif
-            <form method="POST" action="{{ action('User\ProfileController@store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ action('User\ProfileController@store') }}" enctype="multipart/form-data" class="mt-4">
                 {{ csrf_field() }}
                 <input type="file" name="myPic">
                 <input type="submit">

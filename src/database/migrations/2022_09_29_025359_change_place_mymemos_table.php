@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserIdToMymemosTable extends Migration
+class ChangePlaceMymemosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddUserIdToMymemosTable extends Migration
     public function up()
     {
         Schema::table('mymemos', function (Blueprint $table) {
-            $table->bigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('place')->nullable(true)->change();
         });
     }
 
@@ -27,8 +26,7 @@ class AddUserIdToMymemosTable extends Migration
     public function down()
     {
         Schema::table('mymemos', function (Blueprint $table) {
-            $table->dropForeign('mymemos_user_id_foreign');
-            $table->dropColumn('user_id');
+            $table->string('place')->nullable(false)->change();
         });
     }
 }

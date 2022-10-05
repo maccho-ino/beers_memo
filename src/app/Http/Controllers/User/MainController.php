@@ -5,7 +5,12 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Mymemo;
+use App\Models\Country;
+use App\Models\Style;
+use InterventionImage;
+
 
 class MainController extends Controller
 {
@@ -17,18 +22,29 @@ class MainController extends Controller
 
     public function show()
     {
-        $posts = Auth::user()->mymemos()->orderBy('created_at', 'desc')->get();
+        $posts = Auth::user()->mymemos()->orderBy('created_at', 'desc')->paginate(8);
         $posts->load('user');
         // dd($posts);
 
-        return view('user.mypage')->with(['posts' => $posts]);
+        $is_image = false;
+        if (Storage::disk('local')->exists('public/profile_images/' . Auth::id() . '.jpg')) {
+            $is_image = true;
+        }
+
+        return view('user.mypage')->with(['posts' => $posts, 'is_image' => $is_image]);
 
         // return view('user.mypage');
     }
 
     public function add()
     {
-        return view('user.create');
+        $country = new Country;
+        $countries = $country->getLists()->prepend('原産国選択', '');
+
+        $style = new Style;
+        $styles = $style->getLists()->prepend('スタイル選択', '');
+
+        return view('user.create')->with(['countries' => $countries, 'styles' => $styles]);
     }
 
     public function create(Request $request)
@@ -39,10 +55,28 @@ class MainController extends Controller
         $mymemo->user_id = Auth::id();
         $form = $request->all();
 
-        // フォームから画像が送信されてきたら、保存して、$mymemo->image_path に画像のパスを保存する
         if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/mymemo_images');
-            $mymemo->image_path = basename($path);
+            $image = InterventionImage::make($request->file('image'));
+            // dd($request->file('image'));
+            // 回転を補正
+            $image->orientate();
+            // リサイズ
+            $image->fit(
+                600,
+                800,
+                function ($constraint) {
+                    // 縦横比を保持したままにする
+                    $constraint->aspectRatio();
+                    // 小さい画像は大きくしない
+                    $constraint->upsize();
+                }
+            );
+            $filePath = storage_path('app/public/mymemo_images');
+            $image->save($filePath . '/' . $request->file('image')->getClientOriginalName() . '.png');
+            // $path = Storage::putFile('public/image',  $image);
+            // $path = $request->file('image')->store('public/mymemo_images');
+            // dd($path);
+            $mymemo->image_path = $request->file('image')->getClientOriginalName() . '.png';
         } else {
             $mymemo->image_path = null;
         }
@@ -51,6 +85,7 @@ class MainController extends Controller
         unset($form['image']);
 
         $mymemo->fill($form);
+        // dd($mymemo);
         $mymemo->save();
 
         return redirect('user/mypage');
@@ -74,17 +109,25 @@ class MainController extends Controller
         $posts = Auth::user()->mymemos()->where('id', $id)->first();
         // dd($posts);
 
+
         return view('user.detail')->with(['posts' => $posts]);
     }
 
     public function edit(Request $request)
     {
         $posts = Mymemo::find($request->id);
+        // dd($posts);
         if (empty($posts)) {
             abort(404);
         }
 
-        return view('user.edit', ['mymemo_form' => $posts]);
+        $country = new Country;
+        $countries = $country->getLists();
+
+        $style = new Style;
+        $styles = $style->getLists();
+        // dd($posts);
+        return view('user.edit', ['mymemo_form' => $posts, 'countries' => $countries, 'styles' => $styles]);
     }
 
     public function update(Request $request)
@@ -92,6 +135,7 @@ class MainController extends Controller
         $this->validate($request, Mymemo::$rules);
         // Mymemo Modelからデータを取得
         $mymemo = Mymemo::find($request->id);
+        // dd($mymemo);
         // 送信されてきたフォームデータを格納
         $mymemo_form = $request->all();
         if ($request->remove == 'true') {
@@ -119,6 +163,6 @@ class MainController extends Controller
         // dd($mymemo);
         $mymemo->delete();
 
-        return redirect('user/index');
+        return redirect('user/mypage');
     }
 }
