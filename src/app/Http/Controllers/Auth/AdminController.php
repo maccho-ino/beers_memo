@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AuthAdminController extends Controller
+class AdminController extends Controller
 {
     public function __construct()
     {
@@ -13,6 +14,6 @@ class AuthAdminController extends Controller
 
     public function index()
     {
-        return view('admin.home');
+        return view('Admin.index');
     }
 }

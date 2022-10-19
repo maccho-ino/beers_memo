@@ -16,20 +16,23 @@ class AdminLoginController extends Controller
 
     public function showLoginForm()
     {
-        return vies('admin.login');
+        return view('admin.login');
     }
 
     public function login(Request $request)
     {
+        // ログイン時のバリデーション
         $request->validate([
-            4this->username() => 'required|string',
+            $this->username() => 'required|string',
             'password' => 'required|string',
         ]);
 
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return redirect()->intended(route('admin.index'));
+            // ログインが成功したとき
+            return redirect('admin/');
         }
 
+        // ログインが失敗したとき
         return $this->sendFailedLoginResponse($request);
     }
 
@@ -48,6 +51,6 @@ class AdminLoginController extends Controller
     public function logout()
     {
         Auth::guard('admin')->logout();
-        return redirect()->route('admin.login');
+        return redirect()->route('admin.logout');
     }
 }
