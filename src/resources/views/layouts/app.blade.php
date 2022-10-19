@@ -155,10 +155,14 @@
                     <!-- <div class="col-2 mt-5"> -->
                     <!-- <h4 class="text-primary text-uppercase mb-4">Quick Links</h4> -->
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="btn btn-dark text-secondary mb-2 text-left" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>TOP</a>
-                        <a class="btn btn-dark text-secondary mb-2 text-left" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>MY PAGE</a>
-                        <a class="btn btn-dark text-secondary mb-2 text-left" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>LIST OF COUNTRIES</a>
-                        <a class="btn btn-dark text-secondary mb-2 text-left" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>LIST OF STYLES</a>
+                        <a class="btn btn-dark text-secondary mb-2 text-left" href="{{ action('TopController@show') }}"><i class="bi bi-arrow-right text-primary me-2"></i>TOP</a>
+                        @guest
+                        <a class="btn btn-dark text-secondary mb-2 text-left" href="/login"><i class="bi bi-arrow-right text-primary me-2"></i>MY PAGE</a>
+                        @else
+                        <a href="{{ action('User\MainController@show') }}" class="btn btn-dark text-secondary mb-2 text-left"><i class="bi bi-arrow-right text-primary me-2"></i>MY PAGE</a>
+                        @endguest
+                        <a class="btn btn-dark text-secondary mb-2 text-left" href="{{ action('TopController@country') }}"><i class="bi bi-arrow-right text-primary me-2"></i>LIST OF COUNTRIES</a>
+                        <a class="btn btn-dark text-secondary mb-2 text-left" href="{{ action('TopController@style') }}"><i class="bi bi-arrow-right text-primary me-2"></i>LIST OF STYLES</a>
                         <!-- <a class="text-secondary mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
                         <a class="text-secondary" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a> -->
                     </div>

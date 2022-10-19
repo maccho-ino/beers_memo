@@ -52,7 +52,7 @@
 </div>
 
 <div class="text-center">
-    <a href="{{ action('TopController@country') }}"><i class="fa fa-arrow-circle-left text-primary mt-5" aria-hidden="true"></i> STYLE 一覧に戻る</a>
+    <a href="{{ action('TopController@style') }}"><i class="fa fa-arrow-circle-left text-primary mt-5" aria-hidden="true"></i> STYLE 一覧に戻る</a>
 </div>
 
 @endsection

@@ -310,13 +310,26 @@ h6,
 }
 
 .bg-img {
-    background: linear-gradient(rgba(43, 40, 37, .5), rgba(43, 40, 37, .5)), url("../image/Stock01_sample.png") center center no-repeat;
-    background-size: cover;
+    background: linear-gradient(rgba(43, 40, 37, .5), rgba(43, 40, 37, .5)), url("../image/bg_image.png") center center;
+    background-size: contain;
 }
 
 
 .comment {
     white-space: pre-wrap;
 }
+
+/*PCでは無効（改行しない）*/
+.mob {
+    display: none;
+}
+
+/*スマートフォンでは有効（改行する）*/
+@media screen and (max-width:768px) {
+    .mob {
+        display: block;
+    }
+}
+
 
 /* linear-gradient(rgba(43, 40, 37, .5), rgba(43, 40, 37, .5)), */
