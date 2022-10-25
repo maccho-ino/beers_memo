@@ -100,7 +100,9 @@
                         <input type="file" class="form-control-file" name="image">
                     </div>
                     @csrf
-                    <input type="submit" class="btn btn-primary border-inner w-100 py-3" value="作成">
+                    <bitton type="submit" class="btn btn-primary border-inner w-100 py-3" value="作成">
+                        {{ __('作成') }}
+                    </button>
                 </div>
         
             </form>
