@@ -102,8 +102,9 @@
                     @csrf
                     <input type="submit" class="btn btn-primary border-inner w-100 py-3" value="作成">
                 </div>
+        
+            </form>
         </div>
-        </form>
 
         <a href="mypage" class="text-center mt-3"><i class="fa fa-arrow-circle-left text-primary mt-5" aria-hidden="true"></i> MY PAGEに戻る</a>
 
