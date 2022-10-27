@@ -23,7 +23,7 @@
         <div class="col-lg-4 text-center">
 
             @if ($is_image)
-            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="/storage/profile_images/{{ Auth::id() }}.jpg" width="150" height="150">
+            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="{{ Auth::user()->my_pic }}" width="150" height="150">
             @else
             <!-- <img class="rounded-circle img-fluid w-50 d-block mx-auto border border-dark" src="{{ asset('/image/user.png') }}"> -->
             <i class="fa fa-user-circle fa-5x text-primary me-3"></i>
@@ -62,7 +62,7 @@
                             <div class="card-top">
                             </div>
                             @if($post->image_path)
-                            <img class="card-img-top mt-1" src="{{ asset('storage/mymemo_images/' . $post->image_path) }}" alt="Card image">
+                            <img class="card-img-top mt-1" src="{{ $post->image_path }}" alt="Card image">
                             @else
                             <img class="card-img-top mt-1" src="{{ asset('/image/noimage_beer.jpg') }}" alt="Card image">
                             @endif
