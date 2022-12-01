@@ -5,12 +5,12 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Mymemo;
 use App\Models\Country;
 use App\Models\Style;
 use InterventionImage;
-
 
 class MainController extends Controller
 {
@@ -28,6 +28,7 @@ class MainController extends Controller
 
         $is_image = false;
         if (Storage::disk('local')->exists('public/profile_images/' . Auth::id() . '.jpg')) {
+
             $is_image = true;
         }
 
@@ -71,12 +72,13 @@ class MainController extends Controller
                     $constraint->upsize();
                 }
             );
+            dd($image);
             $filePath = storage_path('app/public/mymemo_images');
-            $image->save($filePath . '/' . $request->file('image')->getClientOriginalName() . '.png');
-            // $path = Storage::putFile('public/image',  $image);
-            // $path = $request->file('image')->store('public/mymemo_images');
-            // dd($path);
-            $mymemo->image_path = $request->file('image')->getClientOriginalName() . '.png';
+            $filePath .= '/' . $request->file('image')->getClientOriginalName() . '.png';
+            $image->save($filePath);
+
+            $path = Storage::disk('s3')->putFile('/', new File($filePath), 'public');
+            $mymemo->image_path = Storage::disk('s3')->url($path);
         } else {
             $mymemo->image_path = null;
         }
@@ -141,8 +143,8 @@ class MainController extends Controller
         if ($request->remove == 'true') {
             $mymemo_form['image_path'] = null;
         } elseif ($request->file('image')) {
-            $path = $request->file('image')->store('public/mymemo_images');
-            $mymemo_form['image_path'] = basename($path);
+            $path = Storage::disk('s3')->putFile('/', $mymemo_form['image'], 'public');
+            $mymemo_form['image_path'] = Storage::disk('s3')->url($path);
         } else {
             $mymemo_form['image_path'] = $mymemo->image_path;
         }

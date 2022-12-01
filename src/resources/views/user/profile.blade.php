@@ -21,9 +21,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-3 text-center d-flex flex-column">
-            @if ($is_image)
+            @if ($user)
             <figure>
-                <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="/storage/profile_images/{{ Auth::id() }}.jpg" width="150" height="150">
+                <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="{{ $user->my_pic }}" width="150" height="150">
             </figure>
             @else
             <i class="fa fa-user-circle fa-5x text-primary me-3"></i>

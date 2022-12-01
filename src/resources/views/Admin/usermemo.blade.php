@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-lg-4 text-center mb-md-5">
             @if($posts->image_path)
-            <img class="rounded border border-dark img-fluid" src="{{ asset('storage/mymemo_images/' . $posts->image_path) }}" alt="image">
+            <img class="rounded border border-dark img-fluid" src="{{ $posts->image_path }}" alt="image">
             @else
             <img class="rounded border border-dark img-fluid" src="{{ asset('/image/noimage_beer.jpg') }}" alt="image">
             @endif

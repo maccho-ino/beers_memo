@@ -34,7 +34,7 @@
                         </h5>
                     </div>
                     @if($post->image_path)
-                    <img class="card-img-top mt-1" src="{{ asset('storage/mymemo_images/' . $post->image_path) }}" alt="Card image">
+                    <img class="card-img-top mt-1" src="{{ $post->image_path }}" alt="Card image">
                     @else
                     <img class="card-img-top mt-1" src="{{ asset('/image/noimage_beer.jpg') }}" alt="Card image">
                     @endif
