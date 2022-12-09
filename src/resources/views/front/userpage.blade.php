@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-lg-4 text-center">
             @if ($user->my_pic)
-            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="{{ asset('/storage/profile_images/'. $user->id . '.jpg') }}" width="150" height="150">
+            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="{{ asset('/storage/profile_images/'. $user->id . '.png') }}" width="150" height="150">
             @else
             <img class="rounded-circle img-fluid w-50 d-block mx-auto border border-dark" src="{{ asset('/image/user.png') }}">
             <i class="fa fa-user-circle fa-5x text-primary me-3"></i>
@@ -30,11 +30,10 @@
 
             <h4 class="text-dark text-center mt-2">{{ $user->name }}</h4>
         </div>
+
         <div class="col-lg-7">
             <h4 class="text-dark">PROFILE</h4>
-            <div class="h-50">
-                {{ $user->introduction }}
-            </div>
+            <div class="comment h-50">{{ $user->introduction }}</div>
             <!-- <div class="row">
                 <div class="col-sm-3">
                     <a href="profile"><button type="button" class="center-block btn btn-outline-primary"><i class="fa fa-user-plus"></i> PROFILE編集</button></a>

@@ -19,7 +19,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         $is_image = false;
         if (Storage::disk('s3')->exists(Auth::user()->my_pic)) {
-            dd(Auth::user()->my_pic);
+
             $is_image = true;
         }
 

@@ -24,7 +24,7 @@
 
         <div class="d-inline-flex flex-row align-items-center mb-3 ml-4">
             @if($posts->user->my_pic)
-            <img class="rounded-circle img-fluid d-block mr-2 float-left" width="30" height="30" src="{{ asset('/storage/profile_images/'. $posts->user->id . '.jpg') }}" alt="user image">
+            <img class="rounded-circle img-fluid d-block mr-2 float-left" width="30" height="30" src="{{ asset('/storage/profile_images/'. $posts->user->id . '.png') }}" alt="user image">
             @else
             <i class="fa fa-user-circle fa-2x text-primary me-3"></i>
             @endif

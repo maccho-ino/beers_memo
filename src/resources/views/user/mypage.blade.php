@@ -22,14 +22,13 @@
     <div class="row">
         <div class="col-lg-4 text-center">
 
-            @if ($is_image)
-            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="{{ Auth::user()->my_pic }}" width="150" height="150">
+            @if ($user)
+            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="{{ $user->my_pic }}" width="150" height="150">
             @else
-            <!-- <img class="rounded-circle img-fluid w-50 d-block mx-auto border border-dark" src="{{ asset('/image/user.png') }}"> -->
-            <i class="fa fa-user-circle fa-5x text-primary me-3"></i>
+            <i class="fa fa-user-circle fa-5x text-primary mx-auto"></i>
             @endif
 
-            <h4 class="text-dark text-center mt-2">{{ Auth::user()->name }}</h4>
+            <h4 class="text-dark mt-2">{{ Auth::user()->name }}</h4>
         </div>
         <div class="col-lg-8">
             <h4 class="text-dark">PROFILE</h4>

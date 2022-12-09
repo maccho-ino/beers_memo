@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProfileRequest;
 use Auth;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
@@ -24,15 +25,17 @@ class MainController extends Controller
     {
         $posts = Auth::user()->mymemos()->orderBy('created_at', 'desc')->paginate(8);
         $posts->load('user');
-        // dd($posts);
+        $user = Auth::user();
 
-        $is_image = false;
-        if (Storage::disk('local')->exists('public/profile_images/' . Auth::id() . '.jpg')) {
+        // $is_image = false;
+        // if (Storage::disk('s3')->exists('app/public/profile_images/' . Auth::id() . '.png')) {
 
-            $is_image = true;
-        }
+        //     $is_image = true;
+        // }
 
-        return view('user.mypage')->with(['posts' => $posts, 'is_image' => $is_image]);
+
+
+        return view('user.mypage')->with(['posts' => $posts, 'user' => $user]);
 
         // return view('user.mypage');
     }
@@ -72,7 +75,6 @@ class MainController extends Controller
                     $constraint->upsize();
                 }
             );
-            dd($image);
             $filePath = storage_path('app/public/mymemo_images');
             $filePath .= '/' . $request->file('image')->getClientOriginalName() . '.png';
             $image->save($filePath);
