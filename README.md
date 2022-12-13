@@ -8,6 +8,8 @@ This is the first original application I created during school.
 
 You can post your own beers to keep notes on what you drank, or browse other users' posts.
 
+![beer's memo_mypage](https://user-images.githubusercontent.com/103566802/207419265-b2c32a45-93f7-428d-bac2-9d1f69130909.png)
+
 Beers are categorized by country and style, so you can find the beer you want to drink depending on your mood.
 
 ### Requirement
