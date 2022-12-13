@@ -12,6 +12,8 @@ You can post your own beers to keep notes on what you drank, or browse other use
 
 Beers are categorized by country and style, so you can find the beer you want to drink depending on your mood.
 
+![beer's memo_memo](https://user-images.githubusercontent.com/103566802/207419645-8ff75f45-3b80-4d2a-9286-13923bc4bd7b.png)
+
 ### Requirement
 
 PHP 8.0 / Laravel 6.20
