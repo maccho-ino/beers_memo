@@ -75,7 +75,7 @@ class MainController extends Controller
                     $constraint->upsize();
                 }
             );
-            dd($image);
+
             $filePath = storage_path('app/public/mymemo_images');
             $filePath .= '/' . $request->file('image')->getClientOriginalName() . '.png';
             $image->save($filePath);

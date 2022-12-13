@@ -71,7 +71,8 @@
                     <div class="col-sm-12">
                         <select class="form-control bg-light border-primary px-4" id="style_id" name="style_id" placeholder="スタイル" style="height: 55px;" type="text">
                             <?php $__currentLoopData = $styles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $id => $name): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($id); ?>" <?php if($mymemo_form->style_id == $id): ?> selected <?php endif; ?>>
+                            <option value="<?php echo e($id); ?>" <?php if($mymemo_form->style_id == $id): ?> selected <?php endif; ?>><?php echo e($name); ?>
+
                                 <?php if($mymemo_form->style_id != null): ?>
                                 <?php echo e($name); ?>
 

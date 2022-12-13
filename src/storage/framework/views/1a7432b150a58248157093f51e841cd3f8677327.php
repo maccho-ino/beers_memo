@@ -20,14 +20,13 @@
     <div class="row">
         <div class="col-lg-4 text-center">
 
-            <?php if($is_image): ?>
-            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="<?php echo e(Auth::user()->my_pic); ?>" width="150" height="150">
+            <?php if($user): ?>
+            <img class="rounded-circle img-fluid d-block mx-auto border border-dark" src="<?php echo e($user->my_pic); ?>" width="150" height="150">
             <?php else: ?>
-            <!-- <img class="rounded-circle img-fluid w-50 d-block mx-auto border border-dark" src="<?php echo e(asset('/image/user.png')); ?>"> -->
-            <i class="fa fa-user-circle fa-5x text-primary me-3"></i>
+            <i class="fa fa-user-circle fa-5x text-primary mx-auto"></i>
             <?php endif; ?>
 
-            <h4 class="text-dark text-center mt-2"><?php echo e(Auth::user()->name); ?></h4>
+            <h4 class="text-dark mt-2"><?php echo e(Auth::user()->name); ?></h4>
         </div>
         <div class="col-lg-8">
             <h4 class="text-dark">PROFILE</h4>

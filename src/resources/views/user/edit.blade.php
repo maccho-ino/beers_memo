@@ -73,7 +73,7 @@
                     <div class="col-sm-12">
                         <select class="form-control bg-light border-primary px-4" id="style_id" name="style_id" placeholder="スタイル" style="height: 55px;" type="text">
                             @foreach($styles as $id => $name)
-                            <option value="{{ $id }}" @if ($mymemo_form->style_id == $id) selected @endif>
+                            <option value="{{ $id }}" @if ($mymemo_form->style_id == $id) selected @endif>{{ $name }}
                                 @if($mymemo_form->style_id != null)
                                 {{ $name }}
                                 @endif

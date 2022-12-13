@@ -34,7 +34,7 @@
                             <div class="card-top" style="height: 40px;">
                                 <h5 class="card-text text-light text-left mb-1 d-inline-flex flex-row align-items-center">
                                     <?php if($post->user->my_pic): ?>
-                                    <img class="rounded-circle img-fluid d-block mr-2 float-left" width="30" height="30" src="<?php echo e(asset('/storage/profile_images/'. $post->user->id . '.jpg')); ?>" alt="user image">
+                                    <img class="rounded-circle img-fluid d-block mr-2 float-left" width="30" height="30" src="<?php echo e(asset('/storage/profile_images/'. $post->user->id . '.png')); ?>">
                                     <?php else: ?>
                                     <i class="fa fa-user-circle fa-2x text-primary me-3"></i>
                                     <?php endif; ?>
